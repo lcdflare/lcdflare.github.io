@@ -10,7 +10,7 @@ window.addEventListener('load', function() {
 		canvas: canvas,
 		engine: engine,
 		options: {
-			width: 500,
+			width: 700,
 			height: 500,
 			background: 'transparent',
 			wireframes: false,
@@ -18,8 +18,8 @@ window.addEventListener('load', function() {
 		}
 	});
 	
-	//Add a ball
-	var ball = Matter.Bodies.circle(250, 250, 50, {
+	//Add a ballA
+	var ballA = Matter.Bodies.circle(250, 250, 50, {
 		density: 0.04,
 		friction: 0.01,
         frictionAir: 0.00001,
@@ -30,7 +30,37 @@ window.addEventListener('load', function() {
             lineWidth: 1
         }
 	});
-	Matter.World.add(world, ball);
+	Matter.World.add(world, ballA);
+	
+	//Add a ballB
+	var ballB = Matter.Bodies.circle(50, 50, 25, {
+		density: 0.08,
+		friction: 0.02,
+        frictionAir: 0.00002,
+        restitution: 0.8,
+        render: {
+            fillStyle: '#F35e66',
+            strokeStyle: 'black',
+            lineWidth: 1
+        }
+	});
+	Matter.World.add(world, ballB);
+	function addBall()
+	{
+		var ballX = Matter.Bodies.circle(100, 50, 25, {
+		density: 0.08,
+		friction: 0.02,
+        frictionAir: 0.00002,
+        restitution: 0.8,
+        render: {
+            fillStyle: '#F35e66',
+            strokeStyle: 'black',
+            lineWidth: 1
+        }
+		});
+		Matter.World.add(world, ballX);
+	}
+	document.getElementById("addBall").onclick = addBall()
 	
 	//Add a floor
 	var floor = Matter.Bodies.rectangle(250, 520, 500, 40, {
